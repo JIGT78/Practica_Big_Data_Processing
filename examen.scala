@@ -93,7 +93,8 @@ object examen {
     val df = rdd.toDF("palabra")
 
     val recuentoPalabras = df.groupBy("palabra")
-      .agg(functions.count("palabra").alias("Recuento"))
+      .agg(functions.count("palabra").alias("recuento"))
+      .orderBy(functions.col("recuento").desc)
 
     recuentoPalabras.show()
     recuentoPalabras.as[(String, Int)].rdd
